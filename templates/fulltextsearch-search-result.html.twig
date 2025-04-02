@@ -1,0 +1,27 @@
+<hr />
+<p><b>{{ _t('FULLTEXTSEARCH_RESULT_LABEL') }} {{ results|length }}</b></p>
+
+<div class="fullTextSearch_searchresult_wrappers">
+    {% for result in results %}
+        <div class="fullTextSearch_searchresult_item">
+            <span class="h1">
+                <a href="{{ url({ tag: result.tag }) }}">{{ result.tag }}</a>
+                <span class="badge badge-secondary">
+                    {{ categoryMap[result.tag] }}
+                </span>
+            </span>
+
+            {% if result.excerpt.body is not empty %}
+                <p>{{ result.excerpt.body|raw }}</p>
+            {% endif %}
+            {% set bazarFields = result.excerpt.getBazarMarkedFields() %}
+            {% if bazarFields |length > 0 %}
+                <ul>
+                    {% for field in result.excerpt.getBazarMarkedFields() %}
+                        <li>{{ field.label }} : {{ field.value|raw }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

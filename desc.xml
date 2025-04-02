@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugin name="fulltextsearch" version="0.1" active="1">
+  <author>Sylvain Lehmann</author>
+  <label>Full text search</label>
+  <desc>Full text search</desc>
+</plugin>

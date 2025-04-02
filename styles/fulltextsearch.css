@@ -1,0 +1,12 @@
+#fullTextSearch_searchwrapper.loading {
+    #fullTextSearch_searchresult {
+        opacity: 0.5;
+    }
+    .fa-spin {
+        display: inline-block;
+    }
+}
+
+#fullTextSearch_searchwrapper .fa-spin {
+    display: none;
+}

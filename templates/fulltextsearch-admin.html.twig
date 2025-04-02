@@ -1,0 +1,39 @@
+{{ include_javascript('javascripts/vendor/vue/vue.js') }}
+{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_init.js', false, true) }}
+{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_exclusion.js', false, true) }}
+
+{{ include_javascript('javascripts/vendor/datatables-full/jquery.dataTables.min.js') }}
+{{ include_css('styles/vendor/datatables-full/dataTables.bootstrap.min.css') }}
+
+<div id="fullTextSearch-engineConfigure" data-initial-state="{{ engineConfigured ? 'initialized' : 'uninitialized'}}"></div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-condensed"
+           data-paging="true"
+           data-dom="<'row'<'col-sm-6 col-sm-offset-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-6'i><'col-sm-6'p>>"
+    >
+        <thead>
+        <tr>
+            <th><div><b>{{ _t('ACLS_PAGE') }}</b></div></th>
+            <th><div align="center"><b>{{ _t('FULLTEXTSEARCH_EXCLUSIONS_LABEL_STATE') }}</b></div></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag, exclusion in exclusions  %}
+            <tr>
+                <td>
+                    {{ tag }}
+                </td>
+                <td >
+                    <div
+                        class="fullTextSearch-exclusion"
+                        data-initial-state="{{ exclusion ? '1' : '0'}}"
+                        data-tag="{{ tag }}"
+                    />
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,22 @@
+{
+  "require": {
+      "cmsig/seal": "^0.8",
+      "cmsig/seal-loupe-adapter": "^0.8",
+      "doctrine/lexer": "^2.0",
+    "smalot/pdfparser": "^2.12",
+    "cmsig/seal-typesense-adapter": "^0.8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "\\YesWiki\\FullTextSearch\\Services\\": "services",
+      "\\YesWiki\\FullTextSearch\\DTO\\": "dto",
+      "\\YesWiki\\FullTextSearch\\Enum\\": "enum",
+      "\\YesWiki\\FullTextSearch\\Exception\\": "exception"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": false
+    }
+  }
+}

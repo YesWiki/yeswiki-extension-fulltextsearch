@@ -1,0 +1,32 @@
+parameters:
+  fulltextsearch:
+    import_batch_size: 100
+    engine_config:
+      driver: 'loupe'
+
+
+services:
+  _defaults:
+    autowire: true
+    public: true
+    bind:
+        $fullTextSearchConfig: '%fulltextsearch%'
+
+  YesWiki\FullTextSearch\Services\:
+    resource: 'services/*'
+
+
+  YesWiki\FullTextSearch\Services\EventSubscriber\UpdateIndexOnChange:
+    tags:
+      - { name: yeswiki.event_subscriber }
+
+  YesWiki\FullTextSearch\Services\EventSubscriber\DeleteIndexOnDelete:
+    tags:
+      - { name: yeswiki.event_subscriber }
+
+  # Allows to use controllers as services
+  YesWiki\FullTextSearch\Controller\:
+    resource: 'controllers/*'
+
+  Smalot\PdfParser\Parser:
+    factory: [ '@YesWiki\FullTextSearch\Services\Factory\SmalotParserFactory', 'create' ]

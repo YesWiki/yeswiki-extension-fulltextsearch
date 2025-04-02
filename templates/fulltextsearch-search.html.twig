@@ -1,0 +1,20 @@
+{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch.js') }}
+{{ include_css('tools/fulltextsearch/styles/fulltextsearch.css') }}
+
+
+<div id="fullTextSearch_searchwrapper">
+    <div class="input-prepend input-append input-group input-group-lg">
+        <span class="add-on input-group-addon"><i class="fa fa-search icon-search"></i></span>
+        <input
+            class="form-control"
+            type="text"
+            name="fullTextSearch_search"
+            placeholder="{{ _t('WHAT_YOU_SEARCH') }}"
+        />
+        <span class="input-group-addon">
+            <i class="fa fa-spinner fa-spin"></i>
+        </span>
+    </div>
+
+    <div id="fullTextSearch_searchresult"></div>
+</div>

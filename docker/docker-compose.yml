@@ -1,0 +1,15 @@
+services:
+  typesense:
+    image: typesense/typesense:28.0
+    restart: on-failure
+    ports:
+      - "8108:8108"
+    volumes:
+      - yeswiki-typesense-data:/data
+    command: '--data-dir=/data --api-key=xyz'
+    networks:
+      - yeswiki
+
+volumes:
+  yeswiki-typesense-data:
+    name: yeswiki-typesense-data
