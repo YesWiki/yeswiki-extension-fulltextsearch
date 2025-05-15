@@ -25,13 +25,15 @@ Configuration is done under the `fulltextsearch` section of the `wakka.config.ph
 ```
 'fulltextsearch' => [
     'import_batch_size' => 100, // Number of entries to index at once
-    'engine_config' => 'loupe', // Index driver to use . Choice between 'loupe' and 'typesense'. Default loupe
-    'typesense_config' => [ // Configuration for the typesense engine. Not needed if you use another engine
-        'api_key' => 'xyz',
-        'host' => 'typesense',
-        'port' =>  8108,
-        'protocol' =>  'http',
-     ]     
+    'engine_config' => [
+        'driver' => 'loupe', // Search engine to use (loupe or typesense)
+        'typesense_config' => [ // Configuration for the typesense engine. Not needed if you use another engine
+            'api_key' => 'xyz',
+            'host' => 'typesense',
+            'port' =>  8108,
+            'protocol' =>  'http',
+        ],
+     ] 
 ]
 ```
 
