@@ -33,7 +33,7 @@ Configuration is done under the `fulltextsearch` section of the `wakka.config.ph
             'port' =>  8108,
             'protocol' =>  'http',
         ],
-     ] 
+     ],
 ]
 ```
 
