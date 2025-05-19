@@ -37,6 +37,7 @@ const startProcess = async (component) => {
       offset = await reqPostInit(offset);
     } catch (e) {
       component.$emit('init-completed', e.message);
+      return;
     }
 
   }
