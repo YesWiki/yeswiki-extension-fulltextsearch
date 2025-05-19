@@ -1,8 +1,9 @@
 {
   "require": {
-      "cmsig/seal": "^0.8",
-      "cmsig/seal-loupe-adapter": "^0.8",
-      "doctrine/lexer": "^2.0",
+    "php": ">=8.2",
+    "cmsig/seal": "^0.8",
+    "cmsig/seal-loupe-adapter": "^0.8",
+    "doctrine/lexer": "^2.0",
     "smalot/pdfparser": "^2.12",
     "cmsig/seal-typesense-adapter": "^0.8.0"
   },
@@ -15,9 +16,6 @@
     }
   },
   "config": {
-    "platform": {
-      "php": "8.2"
-    },
     "allow-plugins": {
       "php-http/discovery": false
     }
