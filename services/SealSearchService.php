@@ -7,6 +7,7 @@ use CmsIg\Seal\Search\Condition;
 use YesWiki\Core\Service\AclService;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponse;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponseExcerpt;
+use YesWiki\FullTextSearch\Services\Facades\LoupeMatcherFacade;
 use YesWiki\FullTextSearch\Services\Factory\EngineFactory;
 use YesWiki\FullTextSearch\Services\Factory\SchemaFactory;
 use YesWiki\FullTextSearch\Services\Factory\SearchEntryResponseFactory;
@@ -34,7 +35,7 @@ class SealSearchService
             $request = $engine
                 ->createSearchBuilder(SchemaFactory::INDEX_NAME)
                 ->addFilter(new Condition\SearchCondition($query))
-                ->highlight(['body'], ExcerptExtractor::MARK_PREFIX, ExcerptExtractor::MARK_SUFFIX)
+                ->highlight(['body'], LoupeMatcherFacade::MARK_PREFIX, LoupeMatcherFacade::MARK_SUFFIX)
                 ->limit(self::LIMIT)
                 ->offset($currentOffset)
             ;

@@ -3,6 +3,7 @@
 namespace YesWiki\FullTextSearch\DTO;
 
 use YesWiki\FullTextSearch\Services\ExcerptExtractor;
+use YesWiki\FullTextSearch\Services\Facades\LoupeMatcherFacade;
 
 class SearchEntryResponseExcerpt
 {
@@ -24,7 +25,7 @@ class SearchEntryResponseExcerpt
     {
         $markedFields = [];
         foreach ($this->bazarValues as $value) {
-            if (str_contains($value->value, ExcerptExtractor::MARK_PREFIX)) {
+            if ($value->value->hasMatches()) {
                 $markedFields[] = $value;
             }
         }

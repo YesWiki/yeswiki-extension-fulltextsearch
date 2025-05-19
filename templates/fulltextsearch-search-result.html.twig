@@ -18,7 +18,7 @@
             {% if bazarFields |length > 0 %}
                 <ul>
                     {% for field in result.excerpt.getBazarMarkedFields() %}
-                        <li>{{ field.label }} : {{ field.value|raw }}</li>
+                        <li>{{ field.label }} : {{ field.value.formattedText()|raw }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}

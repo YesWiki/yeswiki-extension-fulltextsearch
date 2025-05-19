@@ -7,7 +7,7 @@ use YesWiki\FullTextSearch\DTO\SearchEntryBazar;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponse;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponseExcerpt;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponseExcerptBazarValue;
-use YesWiki\FullTextSearch\Services\ExcerptExtractor;
+use YesWiki\FullTextSearch\Services\Facades\LoupeMatcherFacade;
 use YesWiki\Templates\Service\Utils;
 
 class SearchEntryResponseFactory
@@ -15,7 +15,7 @@ class SearchEntryResponseFactory
     public function __construct(
         private readonly Utils $utils,
         private readonly FormManager $formManager,
-        private readonly ExcerptExtractor $excerptExtractor,
+        private readonly LoupeMatcherFacade $loupeMatcherFacade,
     ) {
     }
 
@@ -63,7 +63,7 @@ class SearchEntryResponseFactory
             $excerpt[] = new SearchEntryResponseExcerptBazarValue(
                 id: $value['id'],
                 label: $form['prepared'][$key]->getLabel() ?? '',
-                value: $this->excerptExtractor->createExcerpt($value['value'], $query),
+                value: $this->loupeMatcherFacade->format($value['value'], $query),
             );
         }
 

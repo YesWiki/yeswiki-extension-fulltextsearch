@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f7a9f4d5010bb0bd9f3148b584ce2c3",
+    "content-hash": "e58b6c0a72a2ce44081fef4a4017b50f",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -592,6 +592,63 @@
                 }
             ],
             "time": "2025-03-25T15:37:50+00:00"
+        },
+        {
+            "name": "loupe/matcher",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loupe-php/matcher.git",
+                "reference": "9efe7d49f2f9c047554142d955771504786faa93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loupe-php/matcher/zipball/9efe7d49f2f9c047554142d955771504786faa93",
+                "reference": "9efe7d49f2f9c047554142d955771504786faa93",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.5",
+                "symfony/finder": "^6.2",
+                "symplify/easy-coding-standard": "^12.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Loupe\\Matcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yanick Witschi",
+                    "email": "yanick.witschi@terminal42.ch"
+                },
+                {
+                    "name": "Philipp Daun",
+                    "email": "daun@daun.ltd"
+                }
+            ],
+            "description": "Highlight and crop around search terms",
+            "support": {
+                "issues": "https://github.com/loupe-php/matcher/issues",
+                "source": "https://github.com/loupe-php/matcher/tree/0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Toflar",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-05-08T12:59:44+00:00"
         },
         {
             "name": "mjaschen/phpgeo",
@@ -2802,7 +2859,9 @@
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
+    "platform": {
+        "php": ">=8.2"
+    },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
