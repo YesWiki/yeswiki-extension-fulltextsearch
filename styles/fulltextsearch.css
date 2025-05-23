@@ -24,7 +24,7 @@
 
 .fullTextSearch_searchresult_wrappers {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     column-gap: 1em;
 
     .fullTextSearch_searchresult_item {
@@ -32,5 +32,17 @@
         grid-template-rows: subgrid;
         grid-row: auto / span 3;
         margin-bottom: 2em;
+    }
+}
+
+@media (min-width: 768px) {
+    #fullTextSearch_searchwrapper .fullTextSearch_searchresult_wrappers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    #fullTextSearch_searchwrapper .fullTextSearch_searchresult_wrappers {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
