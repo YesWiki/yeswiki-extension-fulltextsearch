@@ -30,6 +30,10 @@
         background: none;
         padding: 0;
     }
+
+    .badge {
+        white-space: wrap;
+    }
 }
 
 .fullTextSearch_searchresult_wrappers {
