@@ -7,10 +7,9 @@ class SearchEntryResponse extends SearchEntry
     public function __construct(
         string $tag,
         string $title,
-        string $body,
-        array $bazar,
+        string $fulltext,
         public readonly SearchEntryResponseExcerpt $excerpt
     ) {
-        parent::__construct($tag, $title, $body, $bazar);
+        parent::__construct($tag, $title, $fulltext);
     }
 }

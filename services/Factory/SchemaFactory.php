@@ -18,12 +18,7 @@ class SchemaFactory
                 // use tag twice to be able to search on it
                 'tag_searchable' => new Field\TextField('tag_searchable', searchable: true, filterable: true),
                 'title' => new Field\TextField('title', searchable: true),
-                'type' => new Field\TextField('type', searchable: false),
-                'body' => new Field\TextField('body', searchable: true),
-                'bazar' => new Field\ObjectField('bazar', [
-                    'id' => new Field\TextField('id', searchable: false),
-                    'value' => new Field\TextField('value'),
-                ], multiple: true),
+                'fulltext' => new Field\TextField('fulltext', searchable: true),
             ]),
         ]);
     }

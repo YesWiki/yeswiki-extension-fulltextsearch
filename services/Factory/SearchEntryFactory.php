@@ -27,7 +27,7 @@ class SearchEntryFactory
 
     public function createFromPage(array $page): SearchEntry
     {
-        return new SearchEntry(
+        return SearchEntry::buildFromPageContent(
             tag: $page['tag'],
             title: $this->utils->getTitleFromBody($page),
             body: $this->createContent($page),

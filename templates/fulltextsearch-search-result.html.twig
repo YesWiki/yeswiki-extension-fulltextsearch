@@ -11,16 +11,8 @@
                 </span>
             </span>
 
-            {% if result.excerpt.body is not empty %}
-                <p>{{ result.excerpt.body|raw }}</p>
-            {% endif %}
-            {% set bazarFields = result.excerpt.getBazarMarkedFields() %}
-            {% if bazarFields |length > 0 %}
-                <ul>
-                    {% for field in result.excerpt.getBazarMarkedFields() %}
-                        <li>{{ field.label }} : {{ field.value.formattedText()|raw }}</li>
-                    {% endfor %}
-                </ul>
+            {% if result.excerpt.fulltext is not empty %}
+                <p>{{ result.excerpt.getFullTextCleaned|trim|raw }}</p>
             {% endif %}
         </div>
     {% endfor %}

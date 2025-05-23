@@ -7,7 +7,6 @@ use CmsIg\Seal\Search\Condition;
 use YesWiki\Core\Service\AclService;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponse;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponseExcerpt;
-use YesWiki\FullTextSearch\Services\Facades\LoupeMatcherFacade;
 use YesWiki\FullTextSearch\Services\Factory\EngineFactory;
 use YesWiki\FullTextSearch\Services\Factory\SchemaFactory;
 use YesWiki\FullTextSearch\Services\Factory\SearchEntryResponseFactory;
@@ -35,7 +34,7 @@ class SealSearchService
             $request = $engine
                 ->createSearchBuilder(SchemaFactory::INDEX_NAME)
                 ->addFilter(new Condition\SearchCondition($query))
-                ->highlight(['body'], LoupeMatcherFacade::MARK_PREFIX, LoupeMatcherFacade::MARK_SUFFIX)
+                ->highlight(['body', 'fulltext'])
                 ->limit(self::LIMIT)
                 ->offset($currentOffset)
             ;
@@ -52,7 +51,7 @@ class SealSearchService
             $currentOffset += self::LIMIT;
             foreach ($engineRawResponse as $entry) {
                 if ($this->aclService->hasAccess('read', $entry['tag'])) {
-                    $res[] = $this->searchEntryResponseFactory->create($query, $entry);
+                    $res[] = $this->searchEntryResponseFactory->create($entry);
                     if (count($res) >= self::LIMIT) {
                         return $res;
                     }

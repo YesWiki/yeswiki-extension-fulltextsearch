@@ -5,8 +5,7 @@
     "cmsig/seal-loupe-adapter": "^0.8",
     "doctrine/lexer": "^2.0",
     "smalot/pdfparser": "^2.12",
-    "cmsig/seal-typesense-adapter": "^0.8.0",
-    "loupe/matcher": "^0.1.0"
+    "cmsig/seal-typesense-adapter": "^0.8.0"
   },
   "autoload": {
     "psr-4": {
