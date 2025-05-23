@@ -77,7 +77,10 @@ class SearchEntryFactory
             if (!is_string($value)) {
                 $value = (string)$value;
             }
-            $bazar[] = new SearchEntryBazar($key, $value);
+            $bazar[] = new SearchEntryBazar(
+                $key,
+                $this->htmlPurifierFacade->purify($value)
+            );
         }
 
         return $bazar;
