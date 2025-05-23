@@ -62,9 +62,9 @@ class SealFacade
     /**
      * @return SearchEntryResponse[]
      */
-    public function search(string $query): array
+    public function search(string $query, int $limit): array
     {
-        return $this->sealSearchService->search($this->getEngine(), $query);
+        return $this->sealSearchService->search($this->getEngine(), $query, $limit);
     }
 
     public function saveDocument(SearchEntry $searchEntry)

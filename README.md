@@ -18,7 +18,7 @@ This extension is designed to be used out of the box without any configuration f
 - Install the extension using the YesWiki extension manager
 - Access the admin page of the extension using the {{ FullTextSearchAdmin }} action and click on the "Initialize" button
 - The extension will automatically index the wiki pages and bazar entries on the database
-- Add a search box in your wiki using the {{ FullTextSearchSearch }} action
+- Add a search box in your wiki using the {{ FullTextSearchSearch }} action. You can use the `limit` parameter to limit the number of results displayed. For example, `{{ FullTextSearchSearch limit="5" }}` will display only 5 results. Default is 10.
 
 ## Configuration
 Configuration is done under the `fulltextsearch` section of the `wakka.config.php` file.

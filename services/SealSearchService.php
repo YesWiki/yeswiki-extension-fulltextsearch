@@ -6,15 +6,13 @@ use CmsIg\Seal\Engine;
 use CmsIg\Seal\Search\Condition;
 use YesWiki\Core\Service\AclService;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponse;
-use YesWiki\FullTextSearch\DTO\SearchEntryResponseExcerpt;
-use YesWiki\FullTextSearch\Services\Factory\EngineFactory;
 use YesWiki\FullTextSearch\Services\Factory\SchemaFactory;
 use YesWiki\FullTextSearch\Services\Factory\SearchEntryResponseFactory;
 use YesWiki\FullTextSearch\Services\Repository\PageExclusionRepository;
 
 class SealSearchService
 {
-    public const LIMIT = 10;
+    public const DEFAULT_LIMIT = 10;
     public const HIGHLIGHT_TAG_START = '<mark>';
     public const HIGHLIGHT_TAG_END = '</mark>';
 
@@ -28,8 +26,11 @@ class SealSearchService
     /**
      * @return SearchEntryResponse[]
      */
-    public function search(Engine $engine, string $query): array
+    public function search(Engine $engine, string $query, int $limit): array
     {
+
+        $limitPurified = $this->purifyLimit($limit);
+
         $currentOffset = 0;
         $res = [];
         while (true) {
@@ -37,7 +38,7 @@ class SealSearchService
                 ->createSearchBuilder(SchemaFactory::INDEX_NAME)
                 ->addFilter(new Condition\SearchCondition($query))
                 ->highlight(['title', 'fulltext'], self::HIGHLIGHT_TAG_START, self::HIGHLIGHT_TAG_END)
-                ->limit(self::LIMIT)
+                ->limit($limitPurified)
                 ->offset($currentOffset)
             ;
 
@@ -50,15 +51,27 @@ class SealSearchService
             if (count($engineRawResponse) === 0) {
                 return $res;
             }
-            $currentOffset += self::LIMIT;
+            $currentOffset += $limitPurified;
             foreach ($engineRawResponse as $entry) {
                 if ($this->aclService->hasAccess('read', $entry['tag'])) {
                     $res[] = $this->searchEntryResponseFactory->create($entry);
-                    if (count($res) >= self::LIMIT) {
+                    if (count($res) >= $limitPurified) {
                         return $res;
                     }
                 }
             }
         }
+    }
+
+    private function purifyLimit(int $limit): int
+    {
+        if ($limit <= 1) {
+            return 1;
+        }
+        if ($limit > self::DEFAULT_LIMIT) {
+            return self::DEFAULT_LIMIT;
+        }
+
+        return $limit;
     }
 }

@@ -17,9 +17,10 @@ function getCurrentSearchQuery() {
 const CLASS_LOADING = 'loading';
 function fulltextsearch() {
   const searchQuery = getCurrentSearchQuery();
+  const searchWrapper = getSearchWrapper();
   if(searchQuery === '') {
     $('#fullTextSearch_searchresult').html('');
-    getSearchWrapper().removeClass(CLASS_LOADING)
+    searchWrapper.removeClass(CLASS_LOADING)
     return;
   }
 
@@ -27,6 +28,7 @@ function fulltextsearch() {
     method: 'POST',
     body: JSON.stringify({
       query: searchQuery,
+      limit: searchWrapper.attr('data-limit')
     }),
   })
     .then(response => {
@@ -37,7 +39,7 @@ function fulltextsearch() {
     })
     .then(data => {
       $('#fullTextSearch_searchresult').html(data);
-      getSearchWrapper().removeClass(CLASS_LOADING)
+      searchWrapper.removeClass(CLASS_LOADING)
     })
 }
 

@@ -8,6 +8,7 @@ use YesWiki\Core\YesWikiController;
 use YesWiki\FullTextSearch\DTO\SearchEntryResponse;
 use YesWiki\FullTextSearch\Services\Repository\BazarCategoryRepository;
 use YesWiki\FullTextSearch\Services\SealFacade;
+use YesWiki\FullTextSearch\Services\SealSearchService;
 
 class SearchController extends YesWikiController
 {
@@ -16,7 +17,10 @@ class SearchController extends YesWikiController
      */
     public function search()
     {
-        $results = $this->getService(SealFacade::class)->search($this->wiki->request->toArray()['query'] ?? '');
+        $results = $this->getService(SealFacade::class)->search(
+            $this->wiki->request->toArray()['query'] ?? '',
+                (int) $this->wiki->request->toArray()['limit'] ?? SealSearchService::DEFAULT_LIMIT,
+        );
 
         $categoryMap = $this->createTagCategryMap($results);
 

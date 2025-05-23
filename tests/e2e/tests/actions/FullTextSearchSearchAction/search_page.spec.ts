@@ -93,4 +93,25 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 0');
     });
 
+    test(`${engine.driver} - Search results limit should be configurable`, async ({ page }) => {
+        await createPageWithContent(page, 'lipsum1', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+        await createPageWithContent(page, 'lipsum2', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+        await createPageWithContent(page, 'lipsum3', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+        await createPageWithContent(page, 'lipsum4', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+        await createPageWithContent(page, 'lipsum5', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+
+        await page.goto('/?fullTextSearchSearch');
+
+        await page.locator('[name="fullTextSearch_search"]').pressSequentially('Lorem ipsum dolor');
+        await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 5');
+
+        await page.getByRole('link', { name: 'Éditer la page' }).click();
+        await replaceEditorTextNewContent(page, '{{ FullTextSearchSearch limit="3" }}');
+        await page.getByRole('button', { name: 'Sauver' }).first().click();
+        await page.waitForLoadState();
+
+        await page.locator('[name="fullTextSearch_search"]').pressSequentially('Lorem ipsum dolor');
+        await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 3');
+    });
+
 });
