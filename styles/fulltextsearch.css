@@ -12,6 +12,8 @@
 }
 
 .fullTextSearch_searchresult_item {
+    word-break: break-all;
+
     i {
         color: silver;
     }
@@ -22,7 +24,6 @@
     mark {
         font-weight: bold;
         background: none;
-        word-break: break-all;
     }
 }
 
