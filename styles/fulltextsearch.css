@@ -1,3 +1,7 @@
+#fullTextSearch-engineConfigure {
+    margin-bottom: 2em;
+}
+
 #fullTextSearch_searchwrapper.loading {
     #fullTextSearch_searchresult {
         opacity: 0.5;

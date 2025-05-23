@@ -4,9 +4,12 @@
 
 {{ include_javascript('javascripts/vendor/datatables-full/jquery.dataTables.min.js') }}
 {{ include_css('styles/vendor/datatables-full/dataTables.bootstrap.min.css') }}
+{{ include_css('tools/fulltextsearch/styles/fulltextsearch.css') }}
 
+<p>{{ _t('FULLTEXTSEARCH_INIT_TITLE') }}</p>
 <div id="fullTextSearch-engineConfigure" data-initial-state="{{ engineConfigured ? 'initialized' : 'uninitialized'}}"></div>
 
+<p>{{ _t('FULLTEXTSEARCH_EXCLUSIONS_TITLE') }}</p>
 <div class="table-responsive">
     <table class="table table-striped table-condensed"
            data-paging="true"
