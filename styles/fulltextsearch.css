@@ -28,6 +28,7 @@
     mark {
         font-weight: bold;
         background: none;
+        padding: 0;
     }
 }
 
