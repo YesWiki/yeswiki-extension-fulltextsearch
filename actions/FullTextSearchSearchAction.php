@@ -12,7 +12,7 @@ class FullTextSearchSearchAction extends YesWikiAction
     public function formatArguments($arg)
     {
         return [
-            'limit' => $arg['limit'] ?? SealSearchService::DEFAULT_LIMIT,
+            'limit' => $arg['limit'] ?? SealSearchService::LIMIT_DEFAULT,
         ];
     }
 

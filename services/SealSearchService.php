@@ -12,7 +12,8 @@ use YesWiki\FullTextSearch\Services\Repository\PageExclusionRepository;
 
 class SealSearchService
 {
-    public const DEFAULT_LIMIT = 10;
+    public const LIMIT_DEFAULT = 10;
+    public const LIMIT_MAX = 100;
     public const HIGHLIGHT_TAG_START = '<mark>';
     public const HIGHLIGHT_TAG_END = '</mark>';
 
@@ -68,8 +69,8 @@ class SealSearchService
         if ($limit <= 1) {
             return 1;
         }
-        if ($limit > self::DEFAULT_LIMIT) {
-            return self::DEFAULT_LIMIT;
+        if ($limit > self::LIMIT_MAX) {
+            return self::LIMIT_MAX;
         }
 
         return $limit;
