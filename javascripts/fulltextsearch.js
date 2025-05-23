@@ -9,12 +9,24 @@ function debounce(func, timeout = 300){
 function getSearchWrapper() {
   return $('#fullTextSearch_searchwrapper');
 }
+function getCurrentSearchQuery() {
+  const url = new URL(window.location.href);
+  return decodeURIComponent(url.searchParams.get('fullTextSearch_search') ?? '');
+}
+
 const CLASS_LOADING = 'loading';
-function fulltextsearch(e) {
+function fulltextsearch() {
+  const searchQuery = getCurrentSearchQuery();
+  if(searchQuery === '') {
+    $('#fullTextSearch_searchresult').html('');
+    getSearchWrapper().removeClass(CLASS_LOADING)
+    return;
+  }
+
   fetch(wiki.url('?api/fulltextsearch/search'), {
     method: 'POST',
     body: JSON.stringify({
-      query: e.target.value,
+      query: searchQuery,
     }),
   })
     .then(response => {
@@ -29,10 +41,20 @@ function fulltextsearch(e) {
     })
 }
 
-
 $(document).ready(() => {
   $('#fullTextSearch_searchwrapper [name="fullTextSearch_search"]')
+    // Bind events
     .on('keyup', debounce(fulltextsearch, 500))
     .on('keyup', () => {getSearchWrapper().addClass(CLASS_LOADING)})
+    .on('keyup', (e) => {
+      let url = new URL(window.location.href);
+      url.searchParams.set('fullTextSearch_search', encodeURIComponent(e.target.value));
+      window.history.replaceState({}, '', url);
+    })
+
+    // Set initial value
+    .val(getCurrentSearchQuery())
+    .trigger('keyup')
   ;
+
 });
