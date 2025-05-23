@@ -4,16 +4,20 @@
 <div class="fullTextSearch_searchresult_wrappers">
     {% for result in results %}
         <div class="fullTextSearch_searchresult_item">
-            <span class="h1">
-                <a href="{{ url({ tag: result.tag }) }}">{{ result.tag }}</a>
+            <h4 class="fullTextSearch_searchresult_item_title">
+                <a href="{{ url({ tag: result.tag }) }}">{{ result.title is empty ? result.tag : result.title }}</a>
+            </h4>
+            <p class="fullTextSearch_searchresult_item_badge">
                 <span class="badge badge-secondary">
                     {{ categoryMap[result.tag] }}
                 </span>
-            </span>
+            </p>
 
-            {% if result.excerpt.fulltext is not empty %}
-                <p>{{ result.excerpt.getFullTextCleaned|trim|raw }}</p>
-            {% endif %}
+            <p class="fullTextSearch_searchresult_item_excerpt">
+                {% if result.excerpt.fulltext is not empty %}
+                    <i>[...]&nbsp;</i>{{ result.excerpt.getFullTextCleaned|trim|raw }}<i>&nbsp;[...]</i>
+                {% endif %}
+            </p>
         </div>
     {% endfor %}
 </div>

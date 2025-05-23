@@ -21,7 +21,7 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('BacASable');
+        await expect(firstResult.locator('h4')).toContainText('BacASable');
         await expect(firstResult).toContainText('Bac à sable Premiers défis à réaliser');
     });
 
@@ -57,7 +57,7 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('LoremIpsum');
+        await expect(firstResult.locator('h4')).toContainText('LoremIpsum');
         await expect(firstResult).toContainText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus');
     });
 
@@ -76,7 +76,7 @@ engineProvider.forEach(engine => {
 
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('BacASable');
+        await expect(firstResult.locator('h4')).toContainText('BacASable');
         await expect(firstResult).toContainText('Lorem ipsum dolor sit amet');
     });
 

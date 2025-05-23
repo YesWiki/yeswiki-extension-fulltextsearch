@@ -15,6 +15,8 @@ use YesWiki\FullTextSearch\Services\Repository\PageExclusionRepository;
 class SealSearchService
 {
     public const LIMIT = 10;
+    public const HIGHLIGHT_TAG_START = '<mark>';
+    public const HIGHLIGHT_TAG_END = '</mark>';
 
     public function __construct(
         private readonly SearchEntryResponseFactory $searchEntryResponseFactory,
@@ -34,7 +36,7 @@ class SealSearchService
             $request = $engine
                 ->createSearchBuilder(SchemaFactory::INDEX_NAME)
                 ->addFilter(new Condition\SearchCondition($query))
-                ->highlight(['body', 'fulltext'])
+                ->highlight(['title', 'fulltext'], self::HIGHLIGHT_TAG_START, self::HIGHLIGHT_TAG_END)
                 ->limit(self::LIMIT)
                 ->offset($currentOffset)
             ;

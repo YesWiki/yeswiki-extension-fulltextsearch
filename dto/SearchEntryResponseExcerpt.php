@@ -6,6 +6,7 @@ namespace YesWiki\FullTextSearch\DTO;
 class SearchEntryResponseExcerpt
 {
     public function __construct(
+        public readonly string $title,
         public readonly string $fulltext,
     )
     {

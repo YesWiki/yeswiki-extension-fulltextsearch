@@ -23,8 +23,9 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('FramasofT');
-        await expect(firstResult).toContainText('Nom de la ressource : Framasoft');
+        await expect(firstResult.locator('h4')).toContainText('Framasoft');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_badge')).toContainText('Ressources');
+        await expect(firstResult).toContainText('Framasoft, c’est une');
     });
 
     test(`${engine.driver} - Search result should not return entry without permission`, async ({ page }) => {
@@ -63,7 +64,7 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('LoremIpsumDolor');
+        await expect(firstResult.locator('h4')).toContainText('LoremIpsumDolor');
     });
 
     test(`${engine.driver} - Search results should be updated with entry change`, async ({ page }) => {
@@ -77,8 +78,8 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('FramasofT');
-        await expect(firstResult).toContainText('Nom de la ressource : Lorem ipsum dolor');
+        await expect(firstResult.locator('h4')).toContainText('Lorem ipsum dolor');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toContainText('Lorem ipsum dolor');
     });
 
     test(`${engine.driver} - Search results should parse attachments in PDF`, async ({ page }) => {
@@ -92,8 +93,8 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
-        await expect(firstResult.locator('.h1')).toContainText('FramasofT');
-        await expect(firstResult).toContainText('Documents : Lorem ipsum dolor');
+        await expect(firstResult.locator('h4')).toContainText('Framasoft');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toContainText('Lorem ipsum dolor');
     });
 
     test(`${engine.driver} - Search results should be updated with entry remove`, async ({ page }) => {

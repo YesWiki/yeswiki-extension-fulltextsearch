@@ -14,7 +14,8 @@ class SearchEntryResponseFactory
             title: $response['title'],
             fulltext: $response['fulltext'],
             excerpt: new SearchEntryResponseExcerpt(
-                $response['_formatted']['fulltext'] ?? ''
+                title: $response['_formatted']['title'] ?? '',
+                fulltext: $response['_formatted']['fulltext'] ?? ''
             )
         );
     }
