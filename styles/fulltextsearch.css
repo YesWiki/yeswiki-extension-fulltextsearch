@@ -12,6 +12,9 @@
 }
 
 .fullTextSearch_searchresult_item {
+    i {
+        color: silver;
+    }
     .h1 a {
         word-wrap: break-word;
     }
