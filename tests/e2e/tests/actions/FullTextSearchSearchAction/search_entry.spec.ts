@@ -109,4 +109,19 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 0');
     });
 
+    test(`${engine.driver} - Search results should take care of &amp; encoding in titles`, async ({ page }) => {
+        await page.goto('/?FramasofT');
+        await page.getByRole('link', { name: 'Éditer la page' }).click();
+        await page.locator('[name="bf_titre"]').fill('aaa&bbb');
+        await page.getByRole('button', { name: 'Valider' }).click();
+
+        await page.goto('/?fullTextSearchSearch');
+        await page.locator('[name="fullTextSearch_search"]').pressSequentially('FramasofT');
+        await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
+
+        const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
+        await expect(firstResult.locator('h4')).toContainText('aaa&bbb');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toContainText('Framasoft, c’est une association d’éducation');
+    });
+
 });

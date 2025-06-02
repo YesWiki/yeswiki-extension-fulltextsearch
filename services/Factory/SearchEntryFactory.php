@@ -29,7 +29,7 @@ class SearchEntryFactory
     {
         return SearchEntry::buildFromPageContent(
             tag: $page['tag'],
-            title: $this->utils->getTitleFromBody($page),
+            title: $this->htmlPurifierFacade->purify($this->utils->getTitleFromBody($page)),
             body: $this->createContent($page),
             bazar: $this->createBazar($page),
         );

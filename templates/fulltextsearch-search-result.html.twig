@@ -5,7 +5,7 @@
     {% for result in results %}
         <div class="fullTextSearch_searchresult_item">
             <h4 class="fullTextSearch_searchresult_item_title">
-                <a href="{{ url({ tag: result.tag }) }}">{{ result.title is empty ? result.tag : result.title }}</a>
+                <a href="{{ url({ tag: result.tag }) }}">{{ result.title is empty ? result.tag : result.title|raw }}</a>
             </h4>
             <p class="fullTextSearch_searchresult_item_badge">
                 <span class="badge badge-secondary">
