@@ -15,21 +15,13 @@ class SearchEntryTest extends TestCase
         $entry = new SearchEntry(
             'tag1',
             'title1',
-            'body1',
-            [
-                new SearchEntryBazar('id1', 'value1'),
-                new SearchEntryBazar('id2', 'value2'),
-            ]
+            'fulltext',
         );
         $expected = [
             'tag' => 'tag1',
             'tag_searchable' => 'tag1',
             'title' => 'title1',
-            'body' => 'body1',
-            'bazar' => [
-                ['id' => 'id1', 'value' => 'value1'],
-                ['id' => 'id2', 'value' => 'value2'],
-            ],
+            'fulltext' => 'fulltext',
         ];
 
         $this->assertEquals($expected, $entry->normalize());
