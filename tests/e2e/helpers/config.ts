@@ -4,17 +4,46 @@ import {ADMIN_PASSWORD, ADMIN_USERNAME, login, logout} from "../../../../../test
 import {createPageWithContent} from "../../../../../tests/e2e/helpers/page";
 import {Engine} from "../provider/engineProvider";
 
-export const udpateEngineConfig = async (page: Page, engine: Engine) => {
+const updateConfigRequest = async (page: Page, config: object) => {
     await login(page, ADMIN_USERNAME, ADMIN_PASSWORD);
-
     const res = await page.request.post('/?api/ci/update_config', {
-        data: {
+        data: config
+    });
+
+    expect(res.ok()).toBeTruthy();
+    await logout(page);
+}
+
+export const udpateEngineConfig = async (page: Page, engine: Engine) => {
+    await updateConfigRequest(page,
+        {
             fulltextsearch: {
                 engine_config: engine
             }
         }
-    });
-    expect(res.ok()).toBeTruthy();
+    );
+}
 
-    await logout(page);
+export const udpateRenderingLengthCropConfig = async (page: Page, lengthCrop: number) => {
+    await updateConfigRequest(page,
+        {
+            fulltextsearch: {
+                rendering: {
+                    length_crop: lengthCrop
+                }
+            }
+        }
+    );
+}
+
+export const udpateRenderingLengthExcerptMax = async (page: Page, lengthExcerpt: number) => {
+    await updateConfigRequest(page,
+        {
+            fulltextsearch: {
+                rendering: {
+                    length_excerpt_max: lengthExcerpt
+                }
+            }
+        }
+    );
 }

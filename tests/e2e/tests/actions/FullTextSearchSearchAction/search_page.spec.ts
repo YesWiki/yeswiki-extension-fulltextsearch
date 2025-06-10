@@ -6,7 +6,11 @@ import {replaceEditorTextCallback, replaceEditorTextNewContent} from "../../../.
 import {setPagePermission} from "../../../../../../../tests/e2e/helpers/permissions";
 import {logout} from "../../../../../../../tests/e2e/helpers/login";
 import {engineProvider} from "../../../provider/engineProvider";
-import {udpateEngineConfig} from "../../../helpers/config";
+import {
+    udpateEngineConfig,
+    udpateRenderingLengthCropConfig,
+    udpateRenderingLengthExcerptMax
+} from "../../../helpers/config";
 
 engineProvider.forEach(engine => {
     test.beforeEach(async ({page}) => {
@@ -114,4 +118,29 @@ engineProvider.forEach(engine => {
         await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 3');
     });
 
+    test(`${engine.driver} - Search results should take care of length_crop config`, async ({ page }) => {
+        await udpateRenderingLengthCropConfig(page, 10);
+        await createPageWithContent(page, 'lipsum1', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+
+        await page.goto('/?fullTextSearchSearch');
+        await page.locator('[name="fullTextSearch_search"]').pressSequentially('ipsum');
+        await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
+
+        const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
+        await expect(firstResult.locator('h4')).toContainText('lipsum1');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toHaveText('[...] m ipsum dolor…amet ipsum m [...]');
+    });
+
+    test(`${engine.driver} - Search results should take care of length_result_max config`, async ({ page }) => {
+        await udpateRenderingLengthExcerptMax(page, 10);
+        await createPageWithContent(page, 'lipsum1', `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.`);
+
+        await page.goto('/?fullTextSearchSearch');
+        await page.locator('[name="fullTextSearch_search"]').pressSequentially('ipsum');
+        await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Nombre de résultats : 1');
+
+        const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
+        await expect(firstResult.locator('h4')).toContainText('lipsum1');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toContainText('[...] Lorem ipsum dolor sit amet, consectetur adipiscing [...]');
+    });
 });

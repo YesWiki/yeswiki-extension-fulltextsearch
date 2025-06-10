@@ -34,6 +34,14 @@ Configuration is done under the `fulltextsearch` section of the `wakka.config.ph
             'protocol' =>  'http',
         ],
      ],
+     /*
+     * The following section is used to configure the rendering of the search results.
+     * Warning : We try to make our best to render according to the configuration, but the search engine can have defauts lower than the provided values.
+     */
+     'rendering' => [
+        'length_crop' => 50, // Length of the crop. Default is 50 characters.
+        'length_excerpt_max' => 200, // Max length of the result excerpt. Default is 200 characters.
+     ]
 ]
 ```
 
