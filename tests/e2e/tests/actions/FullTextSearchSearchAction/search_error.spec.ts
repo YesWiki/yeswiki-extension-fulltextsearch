@@ -3,6 +3,7 @@ import {resetEnv} from "../../../../../../../tests/e2e/helpers/db";
 import {initEngine, resetIndex} from "../../../helpers/db";
 import {createPageWithContent, removePage} from "../../../../../../../tests/e2e/helpers/page";
 import {replaceEditorTextCallback, replaceEditorTextNewContent} from "../../../../../../../tests/e2e/helpers/editor";
+import {errorShouldBe} from "../../../../../../../tests/e2e/helpers/alert";
 
 test.beforeEach(async ({page}) => {
     resetEnv();
@@ -20,5 +21,5 @@ test(`Print error message in search error`, async ({ page }) => {
         )});
 
     await page.locator('[name="fullTextSearch_search"]').pressSequentially('framasoft');
-    await expect(page.locator('.yw-main-content #fullTextSearch_searchwrapper')).toContainText('Une erreur interne est survenue.');
+    await errorShouldBe(page, 'Une erreur interne est survenue.');
 });
