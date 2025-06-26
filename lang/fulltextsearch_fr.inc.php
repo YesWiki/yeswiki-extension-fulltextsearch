@@ -13,4 +13,7 @@ return [
     'FULLTEXTSEARCH_RESULT_CATEGORY_NONE' => 'Page',
 
     'FULLTEXTSEARCH_EXCEPTION_DRIVER_NOT_FOUND' => 'Le driver de recherche est introuvable.',
+
+    'FULLTEXTSEARCH_EXCLUSIONS_EXCLUDED' => 'Exclus',
+    'FULLTEXTSEARCH_EXCLUSIONS_INDEXED' => 'Indexé',
 ];

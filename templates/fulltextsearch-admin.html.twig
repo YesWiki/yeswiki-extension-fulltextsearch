@@ -1,6 +1,8 @@
-{{ include_javascript('javascripts/vendor/vue/vue.js') }}
-{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_init.js', false, true) }}
-{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_exclusion.js', false, true) }}
+{#{{ include_javascript('javascripts/vendor/vue/vue.js') }}#}
+{#{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_init.js', false, true) }}#}
+{#{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_exclusion.js', false, true) }}#}
+
+{{ include_javascript('tools/fulltextsearch/javascripts/lib/htmx.min.js') }}
 
 {{ include_javascript('javascripts/vendor/datatables-full/jquery.dataTables.min.js') }}
 {{ include_css('styles/vendor/datatables-full/dataTables.bootstrap.min.css') }}
@@ -28,11 +30,8 @@
                     {{ tag }}
                 </td>
                 <td >
-                    <div
-                        class="fullTextSearch-exclusion"
-                        data-initial-state="{{ exclusion ? '1' : '0'}}"
-                        data-tag="{{ tag }}"
-                    />
+
+                    {{ include('@fulltextsearch/_fragments/exclusion-button.html.twig', {tag: tag, exclusion: exclusion}) }}
                 </td>
             </tr>
 
