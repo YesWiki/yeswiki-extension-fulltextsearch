@@ -29,6 +29,9 @@ class SealSearchService
      */
     public function search(Engine $engine, string $query, int $limit): array
     {
+        if($query === '') {
+            return [];
+        }
 
         $limitPurified = $this->purifyLimit($limit);
 
