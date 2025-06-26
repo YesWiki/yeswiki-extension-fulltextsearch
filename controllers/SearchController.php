@@ -17,17 +17,23 @@ class SearchController extends YesWikiController
      */
     public function search()
     {
+        $query = $this->wiki->request->request->get('fullTextSearch_search', '');
         $results = $this->getService(SealFacade::class)->search(
-            $this->wiki->request->toArray()['query'] ?? '',
-                (int) $this->wiki->request->toArray()['limit'] ?? SealSearchService::LIMIT_DEFAULT,
+            $query,
+                (int) $this->wiki->request->request->all()['limit'] ?? SealSearchService::LIMIT_DEFAULT,
         );
 
         $categoryMap = $this->createTagCategryMap($results);
 
-        return new Response($this->render('@fulltextsearch/fulltextsearch-search-result.html.twig', [
+        return new Response(
+        $this->render('@fulltextsearch/fulltextsearch-search-result.html.twig', [
             'results' => $results,
             'categoryMap' => $categoryMap,
-        ]));
+            ])
+        , Response::HTTP_OK, [
+            'HX-Replace-Url' =>  $this->wiki->Href(null, $this->wiki->request->request->get('tag'), ['fullTextSearch_search' => $query], false)
+            ]
+        );
     }
 
     /**

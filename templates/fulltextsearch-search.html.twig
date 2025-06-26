@@ -1,8 +1,15 @@
-{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch.js') }}
+{{ include_javascript('tools/fulltextsearch/javascripts/lib/htmx.min.js') }}
 {{ include_css('tools/fulltextsearch/styles/fulltextsearch.css') }}
 
 
-<div id="fullTextSearch_searchwrapper" data-limit="{{ limit }}">
+<form
+    id="fullTextSearch_searchwrapper"
+    hx-post="{{  url({tag: 'api/fulltextsearch/search'}) }}"
+    hx-trigger="load, keyup changed delay:500ms"
+    hx-vals='{ "limit": {{ limit|e('js') }}, "tag": "{{ tag }}" }'
+    hx-target="#fullTextSearch_searchresult"
+
+>
     <div class="input-prepend input-append input-group input-group-lg">
         <span class="add-on input-group-addon"><i class="fa fa-search icon-search"></i></span>
         <input
@@ -10,6 +17,7 @@
             type="text"
             name="fullTextSearch_search"
             placeholder="{{ _t('WHAT_YOU_SEARCH') }}"
+            value="{{ defaultQuery|e('html_attr') }}"
         />
         <span class="input-group-addon">
             <i class="fa fa-spinner fa-spin"></i>
@@ -17,4 +25,4 @@
     </div>
 
     <div id="fullTextSearch_searchresult"></div>
-</div>
+</form>

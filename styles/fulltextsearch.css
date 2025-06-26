@@ -2,7 +2,7 @@
     margin-bottom: 2em;
 }
 
-#fullTextSearch_searchwrapper.loading {
+#fullTextSearch_searchwrapper.htmx-request {
     #fullTextSearch_searchresult {
         opacity: 0.5;
     }
