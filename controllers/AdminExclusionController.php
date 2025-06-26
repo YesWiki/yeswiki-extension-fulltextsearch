@@ -24,7 +24,7 @@ class AdminExclusionController extends YesWikiController
         }
 
         return new Response($this->render(
-            '@fulltextsearch/_fragments/exclusion-button.html.twig',
+            '@fulltextsearch/_fragments/button-exclusion.html.twig',
             [
                 'tag' => $tag,
                 'exclusion' => $pageExclusionRepo->isExcluded($tag),
