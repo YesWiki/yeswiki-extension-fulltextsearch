@@ -26,12 +26,13 @@ class SearchController extends YesWikiController
         $categoryMap = $this->createTagCategryMap($results);
 
         return new Response(
-        $this->render('@fulltextsearch/fulltextsearch-search-result.html.twig', [
-            'results' => $results,
-            'categoryMap' => $categoryMap,
-            ])
-        , Response::HTTP_OK, [
-            'HX-Replace-Url' =>  $this->wiki->Href(null, $this->wiki->request->request->get('tag'), ['fullTextSearch_search' => $query], false)
+            $this->render('@fulltextsearch/fulltextsearch-search-result.html.twig', [
+                'results' => $results,
+                'categoryMap' => $categoryMap,
+                ]),
+            Response::HTTP_OK,
+            [
+                'HX-Replace-Url' =>  $this->wiki->Href(null, $this->wiki->request->request->get('tag'), ['fullTextSearch_search' => $query], false)
             ]
         );
     }

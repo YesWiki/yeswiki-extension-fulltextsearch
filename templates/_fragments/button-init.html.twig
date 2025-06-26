@@ -1,0 +1,12 @@
+<button
+    class="btn {% block class %}btn-primary{% endblock %}"
+    hx-post="{{ url({tag: 'api/fulltextsearch/admin/init'}) }}"
+    hx-swap="morph:outerHTML"
+    hx-disable-elt="this"
+    hx-vals='{ "offset": "{% block offset %}0{% endblock %}" }'
+    {% block attrs %}{% endblock %}
+>
+    {% block content %}
+        {{ _t('FULLTEXTSEARCH_INIT_BUTTON_TO_INITIALIZE') }}
+    {% endblock %}
+</button>

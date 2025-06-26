@@ -3,13 +3,18 @@
 {#{{ include_javascript('tools/fulltextsearch/javascripts/fulltextsearch_exclusion.js', false, true) }}#}
 
 {{ include_javascript('tools/fulltextsearch/javascripts/lib/htmx.min.js') }}
+{{ include_javascript('tools/fulltextsearch/javascripts/lib/idiomorph.min.js') }}
+{{ include_javascript('tools/fulltextsearch/javascripts/lib/idiomorph-ext.min.js') }}
 
 {{ include_javascript('javascripts/vendor/datatables-full/jquery.dataTables.min.js') }}
 {{ include_css('styles/vendor/datatables-full/dataTables.bootstrap.min.css') }}
 {{ include_css('tools/fulltextsearch/styles/fulltextsearch.css') }}
 
 <p>{{ _t('FULLTEXTSEARCH_INIT_TITLE') }}</p>
-<div id="fullTextSearch-engineConfigure" data-initial-state="{{ engineConfigured ? 'initialized' : 'uninitialized'}}"></div>
+<div hx-ext="morph" {# Morph extension to avoid spinner flickering #}>
+    {{ include('@fulltextsearch/_fragments/button-init.html.twig') }}
+</div>
+
 
 <p>{{ _t('FULLTEXTSEARCH_EXCLUSIONS_TITLE') }}</p>
 <div class="table-responsive">
