@@ -20,7 +20,7 @@ class SearchController extends YesWikiController
         $query = $this->wiki->request->request->get('fullTextSearch_search', '');
         $results = $this->getService(SealFacade::class)->search(
             $query,
-                (int) $this->wiki->request->request->all()['limit'] ?? SealSearchService::LIMIT_DEFAULT,
+                (int) $this->wiki->request->request->get('limit', SealSearchService::LIMIT_DEFAULT),
         );
 
         $categoryMap = $this->createTagCategryMap($results);
