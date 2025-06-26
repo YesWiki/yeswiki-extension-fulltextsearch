@@ -19,7 +19,6 @@ class AdminInitController extends YesWikiController
      */
     public function init()
     {
-        throw new \Exception('test');
         $offset = (int) $this->wiki->request->request->get('offset', 0);
         if ($offset === 0) {
             $this->getService(SealFacade::class)->initEngine();
