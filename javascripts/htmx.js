@@ -21,3 +21,21 @@ document.addEventListener('htmx:afterRequest', function(event) {
     const responseDecoded = JSON.parse(response);
     addToastMessageFromHtmxHeaderResponse(responseDecoded);
 });
+
+document.addEventListener('htmx:afterRequest', function(event) {
+  if (!event.detail.failed) {
+    return;
+  }
+
+  const parseErrorFromResponse = (event) => {
+    try {
+      const parsed = JSON.parse(event.detail.xhr.response);
+      return parsed.exceptionMessage;
+    } catch (e) {
+
+    }
+    return _t('FULLTEXTSEARCH_ERROR_UNKNOWN')
+  }
+
+  toastMessage(parseErrorFromResponse(event));
+});
