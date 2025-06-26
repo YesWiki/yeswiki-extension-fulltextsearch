@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use YesWiki\Core\ApiResponse;
 use YesWiki\Core\YesWikiController;
+use YesWiki\FullTextSearch\DTO\Htmx\ToastMessage;
+use YesWiki\FullTextSearch\DTO\Htmx\ToastMessageContainer;
 use YesWiki\FullTextSearch\Services\Repository\PageRepository;
 use YesWiki\FullTextSearch\Services\SealBatchImporter;
 use YesWiki\FullTextSearch\Services\SealFacade;
@@ -25,7 +27,13 @@ class AdminInitController extends YesWikiController
         $total = $this->getService(PageRepository::class)->countPages();
         if ($offset >= $total) {
             return new Response(
-                $this->render('@fulltextsearch/_fragments/button-init-success.html.twig')
+                $this->render('@fulltextsearch/_fragments/button-init-success.html.twig'),
+                Response::HTTP_OK,
+                [
+                    'X-Toast-Message' => new ToastMessageContainer([
+                        new ToastMessage(_t('FULLTEXTSEARCH_INIT_BUTTON_SUCCESS'), 3000, 'alert alert-success'),
+                    ]),
+                ]
             );
         }
 
