@@ -5,7 +5,7 @@
 <form
     id="fullTextSearch_searchwrapper"
     hx-post="{{  url({tag: 'api/fulltextsearch/search'}) }}"
-    hx-trigger="load, keyup changed delay:500ms"
+    hx-trigger="load, keyup changed delay:250ms"
     hx-vals='{ "limit": {{ limit|e('js') }}, "tag": "{{ tag }}" }'
     hx-target="#fullTextSearch_searchresult"
 
