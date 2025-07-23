@@ -15,7 +15,7 @@ It implements only a few subset of the search engines available in this project,
 ## Installation
 
 This extension is designed to be used out of the box without any configuration for simple use cases.
-- Install the extension using the YesWiki extension manager
+- Install the extension using the YesWiki extension manager (on the serveur you must install the package `php-sqlite3`)
 - Access the admin page of the extension using the {{ FullTextSearchAdmin }} action and click on the "Initialize" button
 - The extension will automatically index the wiki pages and bazar entries on the database
 - Add a search box in your wiki using the {{ FullTextSearchSearch }} action. You can use the `limit` parameter to limit the number of results displayed. For example, `{{ FullTextSearchSearch limit="5" }}` will display only 5 results. Default is 10.
