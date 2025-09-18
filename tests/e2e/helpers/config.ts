@@ -24,10 +24,11 @@ export const udpateEngineConfig = async (page: Page, engine: Engine) => {
     );
 }
 
-export const udpateRenderingLengthCropConfig = async (page: Page, lengthCrop: number) => {
+export const udpateRenderingLengthCropConfig = async (page: Page, engine: Engine, lengthCrop: number) => {
     await updateConfigRequest(page,
         {
             fulltextsearch: {
+                engine_config: engine,
                 rendering: {
                     length_crop: lengthCrop
                 }
@@ -36,10 +37,11 @@ export const udpateRenderingLengthCropConfig = async (page: Page, lengthCrop: nu
     );
 }
 
-export const udpateRenderingLengthExcerptMax = async (page: Page, lengthExcerpt: number) => {
+export const udpateRenderingLengthExcerptMax = async (page: Page, engine: Engine, lengthExcerpt: number) => {
     await updateConfigRequest(page,
         {
             fulltextsearch: {
+                engine_config: engine,
                 rendering: {
                     length_excerpt_max: lengthExcerpt
                 }
