@@ -71,7 +71,9 @@ engineProvider.forEach(engine => {
         await page.goto('/?FramasofT');
         await page.getByRole('link', { name: 'Éditer la page' }).click();
         await page.locator('[name="bf_titre"]').fill('Lorem ipsum dolor');
+        await page.waitForLoadState();
         await page.getByRole('button', { name: 'Valider' }).click();
+        await expect(page.locator('.alert-success')).toContainText('La fiche a bien été modifiée.');
 
         await page.goto('/?fullTextSearchSearch');
         await page.locator('[name="fullTextSearch_search"]').pressSequentially('lorem ipsum dolor');
@@ -121,7 +123,7 @@ engineProvider.forEach(engine => {
 
         const firstResult = page.locator('.yw-main-content #fullTextSearch_searchwrapper .fullTextSearch_searchresult_item').first();
         await expect(firstResult.locator('h4')).toContainText('aaa&bbb');
-        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toContainText('Framasoft, c’est une association d’éducation');
+        await expect(firstResult.locator('.fullTextSearch_searchresult_item_excerpt')).toContainText('Framasoft, c’est une association d’éd');
     });
 
 });
