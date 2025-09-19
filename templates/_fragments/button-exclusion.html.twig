@@ -1,0 +1,7 @@
+<button
+    class="btn btn-xs {{ exclusion ? 'btn-danger' : 'btn-success' }}"
+    hx-post="{{ url({tag: 'api/fulltextsearch/admin/exclusions/toggle'}) }}"
+    hx-vals='{ "tag": "{{ tag|e('js') }}" }'
+    hx-swap="outerHTML"
+    hx-disabled-elt="this"
+>{{- exclusion ? _t('FULLTEXTSEARCH_EXCLUSIONS_EXCLUDED') : _t('FULLTEXTSEARCH_EXCLUSIONS_INDEXED') -}} </button>

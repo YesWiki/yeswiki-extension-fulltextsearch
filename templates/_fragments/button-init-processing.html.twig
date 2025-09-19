@@ -1,0 +1,15 @@
+{% extends '@fulltextsearch/_fragments/button-init.html.twig' %}
+
+{% block offset %}{{ offset|default(0) }}{% endblock %}
+
+{% block attrs %}
+    hx-trigger="revealed"
+    disabled
+{% endblock %}
+
+{% block content %}
+    <span>
+        <i class="fas fa-circle-notch fa-spin"></i>
+      {{ progress }}%
+    </span>
+{% endblock %}

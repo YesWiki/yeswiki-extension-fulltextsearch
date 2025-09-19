@@ -28,6 +28,8 @@ class FullTextSearchSearchAction extends YesWikiAction
         return $this->render('@fulltextsearch/fulltextsearch-search.html.twig', [
             'engineConfigured' => $facade->isEngineConfigured(),
             'limit' => $this->arguments['limit'],
+            'tag' => $this->wiki->tag,
+            'defaultQuery' => $this->wiki->request->query->get('fullTextSearch_search', ''),
         ]);
     }
 }

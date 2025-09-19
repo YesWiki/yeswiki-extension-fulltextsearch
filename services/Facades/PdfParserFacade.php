@@ -14,7 +14,7 @@ class PdfParserFacade
     public function parse(string $filePath): ?string
     {
         try {
-            $pdf = $this->parser->parseFile($filePath);
+            $pdf = @$this->parser->parseFile($filePath);
         } catch (\Exception $e) {
             return null;
         }

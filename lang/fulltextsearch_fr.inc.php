@@ -5,6 +5,8 @@ return [
 
     'FULLTEXTSEARCH_EXCLUSIONS_LABEL_STATE' => 'Statut',
     'FULLTEXTSEARCH_EXCLUSIONS_TITLE' => 'Utilisez le tableau ci-dessous pour exclure des pages de la recherche. L\'exclusion est prise en compte immédiatement, il n\'est pas necessaire de ré indexer les pages.',
+    'FULLTEXTSEARCH_EXCLUSIONS_EXCLUDED' => 'Exclus',
+    'FULLTEXTSEARCH_EXCLUSIONS_INDEXED' => 'Indexé',
 
     'FULLTEXTSEARCH_ERROR_ENGINE_NOT_CONFIGURED' => 'Erreur : merci de configurer le moteur d\'indexation avant d\'utiliser la recherche',
 
@@ -13,4 +15,8 @@ return [
     'FULLTEXTSEARCH_RESULT_CATEGORY_NONE' => 'Page',
 
     'FULLTEXTSEARCH_EXCEPTION_DRIVER_NOT_FOUND' => 'Le driver de recherche est introuvable.',
+
+    'FULLTEXTSEARCH_INIT_BUTTON_INITIALIZED' => 'Ré indexer',
+    'FULLTEXTSEARCH_INIT_BUTTON_TO_INITIALIZE' => 'Initialiser',
+    'FULLTEXTSEARCH_INIT_BUTTON_SUCCESS' => 'Initialisation complétée',
 ];

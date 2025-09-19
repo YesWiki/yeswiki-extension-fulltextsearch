@@ -2,6 +2,7 @@
 
 namespace YesWiki\FullTextSearch\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use YesWiki\Core\ApiResponse;
 use YesWiki\Core\YesWikiController;
@@ -14,7 +15,7 @@ class AdminExclusionController extends YesWikiController
      */
     public function toggle()
     {
-        $tag = $this->wiki->request->toArray()['tag'] ?? '';
+        $tag = $this->wiki->request->request->get('tag', '');
         $pageExclusionRepo = $this->getService(PageExclusionRepository::class);
         if ($pageExclusionRepo->isExcluded($tag)) {
             $pageExclusionRepo->removeExclusion($tag);
@@ -22,8 +23,12 @@ class AdminExclusionController extends YesWikiController
             $pageExclusionRepo->addExclusion($tag);
         }
 
-        return new ApiResponse([
-            'newState' => $pageExclusionRepo->isExcluded($tag),
-        ]);
+        return new Response($this->render(
+            '@fulltextsearch/_fragments/button-exclusion.html.twig',
+            [
+                'tag' => $tag,
+                'exclusion' => $pageExclusionRepo->isExcluded($tag),
+            ]
+        ));
     }
 }
