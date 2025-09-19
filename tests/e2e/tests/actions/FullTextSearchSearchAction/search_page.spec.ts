@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import {resetEnv} from "../../../../../../../tests/e2e/helpers/db";
 import {initEngine, resetIndex} from "../../../helpers/db";
 import {createPageWithContent, removePage} from "../../../../../../../tests/e2e/helpers/page";
-import {replaceEditorTextCallback, replaceEditorTextNewContent} from "../../../../../../../tests/e2e/helpers/editor";
+import {replaceEditorTextNewContent} from "../../../../../../../tests/e2e/helpers/editor";
 import {setPagePermission} from "../../../../../../../tests/e2e/helpers/permissions";
 import {logout} from "../../../../../../../tests/e2e/helpers/login";
 import {engineProvider} from "../../../provider/engineProvider";
