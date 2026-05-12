@@ -6,7 +6,8 @@
     "doctrine/lexer": "^2.0",
     "smalot/pdfparser": "^2.12",
     "cmsig/seal-typesense-adapter": "^0.10",
-    "loupe/matcher": "^0.2"
+    "loupe/matcher": "^0.2",
+    "cweagans/composer-patches": "^2.0"
   },
   "autoload": {
     "psr-4": {
@@ -28,8 +29,5 @@
       "php-http/discovery": false,
       "cweagans/composer-patches": true
     }
-  },
-  "require-dev": {
-    "cweagans/composer-patches": "^2.0"
   }
 }
