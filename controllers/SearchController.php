@@ -23,7 +23,7 @@ class SearchController extends YesWikiController
                 (int) $this->wiki->request->request->get('limit', SealSearchService::LIMIT_DEFAULT),
         );
 
-        $categoryMap = $this->createTagCategryMap($results);
+        $categoryMap = $this->createTagCategoryMap($results);
 
         return new Response(
             $this->render('@fulltextsearch/fulltextsearch-search-result.html.twig', [
@@ -41,7 +41,7 @@ class SearchController extends YesWikiController
      * @param SearchEntryResponse[] $items
      * @return array<string, string>
      */
-    private function createTagCategryMap(array $items): array
+    private function createTagCategoryMap(array $items): array
     {
         $bazarCategoryRepository = $this->getService(BazarCategoryRepository::class);
         $res = [];
