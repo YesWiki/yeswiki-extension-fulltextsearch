@@ -16,9 +16,20 @@
       "\\YesWiki\\FullTextSearch\\Exception\\": "exception"
     }
   },
+  "extra": {
+    "patches": {
+      "loupe/loupe": {
+        "Fix null array offset deprecation in Tokenizer": "patches/loupe-tokenizer-null-language-key.patch"
+      }
+    }
+  },
   "config": {
     "allow-plugins": {
-      "php-http/discovery": false
+      "php-http/discovery": false,
+      "cweagans/composer-patches": true
     }
+  },
+  "require-dev": {
+    "cweagans/composer-patches": "^2.0"
   }
 }
