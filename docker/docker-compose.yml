@@ -7,8 +7,6 @@ services:
     volumes:
       - yeswiki-typesense-data:/data
     command: '--data-dir=/data --api-key=xyz'
-    networks:
-      - yeswiki
 
 volumes:
   yeswiki-typesense-data:
