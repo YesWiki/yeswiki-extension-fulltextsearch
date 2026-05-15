@@ -1,13 +1,12 @@
 {
   "require": {
-    "php": ">=8.2",
+    "php": ">=8.4",
     "cmsig/seal": "^0.12",
     "cmsig/seal-loupe-adapter": "^0.12",
     "doctrine/lexer": "^2.0",
     "smalot/pdfparser": "^2.12",
     "cmsig/seal-typesense-adapter": "^0.12",
-    "loupe/matcher": "^0.2",
-    "cweagans/composer-patches": "^2.0"
+    "loupe/matcher": "^0.2"
   },
   "autoload": {
     "psr-4": {
@@ -17,17 +16,9 @@
       "\\YesWiki\\FullTextSearch\\Exception\\": "exception"
     }
   },
-  "extra": {
-    "patches": {
-      "loupe/loupe": {
-        "Fix null array offset deprecation in Tokenizer": "patches/loupe-tokenizer-null-language-key.patch"
-      }
-    }
-  },
   "config": {
     "allow-plugins": {
-      "php-http/discovery": false,
-      "cweagans/composer-patches": true
+      "php-http/discovery": false
     }
   }
 }
