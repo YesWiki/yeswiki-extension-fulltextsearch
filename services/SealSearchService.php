@@ -14,6 +14,7 @@ class SealSearchService
 {
     public const LIMIT_DEFAULT = 10;
     public const LIMIT_MAX = 100;
+    public const MAX_SCAN_RESULTS = 1000;
     public const HIGHLIGHT_TAG_START = '<mark>';
     public const HIGHLIGHT_TAG_END = '</mark>';
 
@@ -29,7 +30,7 @@ class SealSearchService
      */
     public function search(Engine $engine, string $query, int $limit): array
     {
-        if($query === '') {
+        if ($query === '') {
             return [];
         }
 
@@ -56,6 +57,10 @@ class SealSearchService
                 return $res;
             }
             $currentOffset += $limitPurified;
+            // we put a limit for avoiding infinite loop
+            if ($currentOffset >= self::MAX_SCAN_RESULTS) {
+                return $res;
+            }
             foreach ($engineRawResponse as $entry) {
                 if ($this->aclService->hasAccess('read', $entry['tag'])) {
                     $res[] = $this->searchEntryResponseFactory->create($entry);
