@@ -4,8 +4,12 @@ namespace YesWiki\FullTextSearch\Services\Factory;
 
 use CmsIg\Seal\Adapter\Loupe\LoupeAdapter;
 use CmsIg\Seal\Adapter\Loupe\LoupeHelper;
+use CmsIg\Seal\Adapter\Typesense\TypesenseAdapter;
 use CmsIg\Seal\Engine;
 use Loupe\Loupe\LoupeFactory;
+use Symfony\Component\HttpClient\HttpClient;
+use Typesense\Client;
+use Http\Discovery\Psr17FactoryDiscovery;
 
 class EngineLoupeFactory
 {
