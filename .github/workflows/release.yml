@@ -24,7 +24,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         if: hashFiles('composer.json') != ''
         with:
-          php-version: '8.3'
+          php-version: '8.4'
           extensions: mysqli
           tools: composer:v2
 
