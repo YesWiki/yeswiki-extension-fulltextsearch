@@ -1,5 +1,9 @@
 # Changelog
 
+## V1.1.2
+
+- Fix : on search form submit trigger new search instead of page creation proposal
+
 ## V1.0.2
 
 - Add README file
