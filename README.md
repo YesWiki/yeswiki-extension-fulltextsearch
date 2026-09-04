@@ -41,6 +41,7 @@ Configuration is done under the `fulltextsearch` section of the
     'import_batch_size' => 100, // Number of entries to index at once
     'engine_config' => [
         'driver' => 'loupe', // Search engine to use (loupe or typesense)
+        'entries_pdf_indexing' => true, // set to false to disable PDF indexing for entries
         'typesense_config' => [
             // Configuration for the typesense engine.
             // Not needed if you use another engine
