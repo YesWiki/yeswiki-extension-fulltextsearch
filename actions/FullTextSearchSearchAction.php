@@ -13,7 +13,7 @@ class FullTextSearchSearchAction extends YesWikiAction
     {
         return [
             'limit' => $arg['limit'] ?? SealSearchService::LIMIT_DEFAULT,
-            'placeholder' => $arg['placeholder'] ?? null,
+            'placeholder' => $arg['placeholder'] ?? _t('WHAT_YOU_SEARCH'),
             'buttonside' => in_array($arg['buttonside'] ?? '', ['left', 'right']) ? $arg['buttonside'] : 'left',
         ];
     }
