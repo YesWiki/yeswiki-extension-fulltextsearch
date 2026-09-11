@@ -26,10 +26,14 @@ for simple use cases.
   action and click on the "Initialize" button
 - The extension will automatically index the wiki pages and bazar entries on the
   database
-- Add a search box in your wiki using the {{ FullTextSearchSearch }} action. You
-  can use the `limit` parameter to limit the number of results displayed. For
-  example, `{{fulltextsearchsearch limit="5"}}` will display only 5 results.
-  Default is 10.
+- Add a search box in your wiki using the {{ FullTextSearchSearch }} action. It
+  accepts the following parameters:
+  - `limit`: maximum number of results displayed. Default is 10. For example,
+    `{{fulltextsearchsearch limit="5"}}` displays only 5 results.
+  - `placeholder`: placeholder text shown in the empty search field. Defaults is
+    `What you search`.
+  - `buttonside`: side of the search button relative to the field, either `left`
+    or `right`. Default is `left`.
 
 ## Configuration
 
