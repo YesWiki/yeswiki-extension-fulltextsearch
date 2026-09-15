@@ -1,5 +1,10 @@
 # Changelog
 
+## V1.1.3
+
+- Feat: allow disable PDF indexing
+- Feat: add search placeholder and search button position location config option
+
 ## V1.1.2
 
 - Fix : on search form submit trigger new search instead of page creation proposal
