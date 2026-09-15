@@ -20,25 +20,27 @@ class SearchController extends YesWikiController
         $query = $this->wiki->request->request->get('fullTextSearch_search', '');
         $results = $this->getService(SealFacade::class)->search(
             $query,
-                (int) $this->wiki->request->request->get('limit', SealSearchService::LIMIT_DEFAULT),
+            (int)$this->wiki->request->request->get('limit', SealSearchService::LIMIT_DEFAULT),
         );
 
         $categoryMap = $this->createTagCategoryMap($results);
 
         return new Response(
             $this->render('@fulltextsearch/fulltextsearch-search-result.html.twig', [
+                'query' => $query,
                 'results' => $results,
                 'categoryMap' => $categoryMap,
-                ]),
+            ]),
             Response::HTTP_OK,
             [
-                'HX-Replace-Url' =>  $this->wiki->Href(null, $this->wiki->request->request->get('tag'), ['fullTextSearch_search' => $query], false)
+                'HX-Replace-Url' => $this->wiki->Href(null, $this->wiki->request->request->get('tag'), ['fullTextSearch_search' => $query], false),
             ]
         );
     }
 
     /**
      * @param SearchEntryResponse[] $items
+     *
      * @return array<string, string>
      */
     private function createTagCategoryMap(array $items): array

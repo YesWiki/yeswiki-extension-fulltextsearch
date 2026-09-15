@@ -2,17 +2,25 @@
     margin-bottom: 2em;
 }
 
+#fullTextSearch_searchwrapper .input-group > .form-control:first-child {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+#fullTextSearch_searchwrapper .fulltextsearch-btn .fulltextsearch-spinner {
+    display: none;
+}
+
 #fullTextSearch_searchwrapper.htmx-request {
     #fullTextSearch_searchresult {
         opacity: 0.5;
     }
-    .fa-spin {
+    .fulltextsearch-btn .fulltextsearch-icon {
+        display: none;
+    }
+    .fulltextsearch-btn .fulltextsearch-spinner {
         display: inline-block;
     }
-}
-
-#fullTextSearch_searchwrapper .fa-spin {
-    display: none;
 }
 
 .fullTextSearch_searchresult_item {

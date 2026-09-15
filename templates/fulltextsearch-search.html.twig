@@ -10,18 +10,26 @@
     hx-target="#fullTextSearch_searchresult"
 
 >
-    <div class="input-prepend input-append input-group input-group-lg">
-        <span class="add-on input-group-addon"><i class="fa fa-search icon-search"></i></span>
+    <div class="input-group input-group-lg">
+        {% if buttonside != 'right' %}
+        <span class="input-group-addon fulltextsearch-btn">
+            <i class="fa fa-search icon-search fulltextsearch-icon"></i>
+            <i class="fa fa-spinner fa-spin fulltextsearch-spinner"></i>
+        </span>
+        {% endif %}
         <input
             class="form-control"
             type="text"
             name="fullTextSearch_search"
-            placeholder="{{ _t('WHAT_YOU_SEARCH') }}"
+            placeholder="{{ placeholder }}"
             value="{{ defaultQuery|e('html_attr') }}"
         />
-        <span class="input-group-addon">
-            <i class="fa fa-spinner fa-spin"></i>
+        {% if buttonside == 'right' %}
+        <span class="input-group-addon fulltextsearch-btn">
+            <i class="fa fa-search icon-search fulltextsearch-icon"></i>
+            <i class="fa fa-spinner fa-spin fulltextsearch-spinner"></i>
         </span>
+        {% endif %}
     </div>
 
     <div id="fullTextSearch_searchresult"></div>

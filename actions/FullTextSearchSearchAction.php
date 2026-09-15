@@ -13,6 +13,8 @@ class FullTextSearchSearchAction extends YesWikiAction
     {
         return [
             'limit' => $arg['limit'] ?? SealSearchService::LIMIT_DEFAULT,
+            'placeholder' => $arg['placeholder'] ?? _t('WHAT_YOU_SEARCH'),
+            'buttonside' => in_array($arg['buttonside'] ?? '', ['left', 'right']) ? $arg['buttonside'] : 'left',
         ];
     }
 
@@ -30,6 +32,8 @@ class FullTextSearchSearchAction extends YesWikiAction
             'limit' => $this->arguments['limit'],
             'tag' => $this->wiki->tag,
             'defaultQuery' => $this->wiki->request->query->get('fullTextSearch_search', ''),
+            'placeholder' => $this->arguments['placeholder'],
+            'buttonside' => $this->arguments['buttonside'],
         ]);
     }
 }
