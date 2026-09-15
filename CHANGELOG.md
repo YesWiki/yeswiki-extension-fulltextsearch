@@ -1,5 +1,9 @@
 # Changelog
 
+## V1.1.4
+
+- Feat: do not index emails replaced by a contact button in bazar entries. Need reindexing be available on existing data.
+
 ## V1.1.3
 
 - Feat: allow disable PDF indexing

@@ -3,6 +3,7 @@
 namespace YesWiki\FullTextSearch\Services\Factory;
 
 use YesWiki\Bazar\Field\BazarField;
+use YesWiki\Bazar\Field\EmailField;
 use YesWiki\Bazar\Field\FileField;
 use YesWiki\Bazar\Service\EntryManager;
 use YesWiki\Bazar\Service\FormManager;
@@ -68,10 +69,18 @@ class SearchEntryFactory
         $indexingPdf = $this->fullTextSearchConfig['entries_pdf_indexing'] ?? true;
         $bazar = [];
         foreach ($entry as $key => $value) {
+            // rendering markup added by EntryManager::appendDisplayData(), it duplicates field values
+            if ($key === 'html_data') {
+                continue;
+            }
             if (is_array($value)) {
                 $value = implode(' ', $value);
             }
             $field = $this->getPreparedFieldFromForm($form, $key);
+            // email replaced by a contact button must stay hidden
+            if ($field instanceof EmailField && $field->getShowContactForm()) {
+                continue;
+            }
             if ($indexingPdf) {
                 if ($field instanceof FileField && $value !== '') {
                     $value = $this->pdfParserFacade->parse('files/' . $value);

@@ -35,6 +35,11 @@ for simple use cases.
   - `buttonside`: side of the search button relative to the field, either `left`
     or `right`. Default is `left`.
 
+## Updates
+
+Some update may need a full reindexing. This is not automatic to preserve server ressources.
+Check CHANGELOG.md to see if needed.
+
 ## Configuration
 
 Configuration is done under the `fulltextsearch` section of the
