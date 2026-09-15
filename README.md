@@ -39,6 +39,7 @@ Configuration is done under the `fulltextsearch` section of the
 ```php
 'fulltextsearch' => [
     'import_batch_size' => 100, // Number of entries to index at once
+    'entries_pdf_indexing' => true, // set to false to disable PDF indexing for entries
     'engine_config' => [
         'driver' => 'loupe', // Search engine to use (loupe or typesense)
         'typesense_config' => [

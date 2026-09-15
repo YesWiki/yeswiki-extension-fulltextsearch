@@ -22,6 +22,7 @@ class SearchEntryFactory
         private readonly FormManager $formManager,
         private readonly PdfParserFacade $pdfParserFacade,
         private readonly HtmlPurifierFacade $htmlPurifierFacade,
+        private readonly array $fullTextSearchConfig,
     ) {
     }
 
@@ -60,18 +61,21 @@ class SearchEntryFactory
 
         $entry = $this->entryManager->getOne($page['tag']);
         $form = $this->formManager->getOne($entry['id_typeannonce']);
-        if($form === null) {
+        if ($form === null) {
             return [new SearchEntryBazar('', '')];
         }
 
+        $indexingPdf = $this->fullTextSearchConfig['entries_pdf_indexing'] ?? true;
         $bazar = [];
         foreach ($entry as $key => $value) {
             if (is_array($value)) {
                 $value = implode(' ', $value);
             }
             $field = $this->getPreparedFieldFromForm($form, $key);
-            if ($field instanceof FileField && $value !== '') {
-                $value = $this->pdfParserFacade->parse('files/' . $value);
+            if ($indexingPdf) {
+                if ($field instanceof FileField && $value !== '') {
+                    $value = $this->pdfParserFacade->parse('files/' . $value);
+                }
             }
 
             if (!is_string($value)) {
