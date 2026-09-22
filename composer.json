@@ -5,10 +5,9 @@
         "php": ">=8.4",
         "cmsig/seal": "^0.12",
         "cmsig/seal-loupe-adapter": "^0.12",
-        "doctrine/lexer": "^2.0",
         "smalot/pdfparser": "^2.12",
         "cmsig/seal-typesense-adapter": "^0.12",
-        "loupe/matcher": "^0.2"
+        "loupe/matcher": "^0.4"
     },
     "autoload": {
         "psr-4": {
