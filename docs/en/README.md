@@ -1,0 +1,100 @@
+# fulltextsearch extension
+
+This extension add support for various full text search engines to Yeswiki. It
+use the <https://github.com/php-cmsig/search> project to ensure a maximum of
+compatibility. It implements only a few subset of the search engines available
+in this project, but if you want to add a new one feel free to add a PR or open
+an issue.
+
+**WARNING: THE EXTENSION NEEDS THE PHP sqlite3 EXTENSION TO WORK.**
+
+## Features
+
+- Advanced search using tokenization, stemming, typo tolerance...
+- Search in the content of bazar entry and pages in the wiki
+- Exclude some pages from the search
+- Filter result using user permissions
+- Search in PDF attachments of bazar entries
+
+## Installation
+
+This extension is designed to be used out of the box without any configuration
+for simple use cases.
+
+- Install the extension using the YesWiki extension manager
+- Access the admin page of the extension using the {{fulltextsearchadmin}}
+  action and click on the "Initialize" button
+- The extension will automatically index the wiki pages and bazar entries on the
+  database
+- Add a search box in your wiki using the {{ FullTextSearchSearch }} action. It
+  accepts the following parameters:
+  - `limit`: maximum number of results displayed. Default is 10. For example,
+    `{{fulltextsearchsearch limit="5"}}` displays only 5 results.
+  - `placeholder`: placeholder text shown in the empty search field. Defaults is
+    `What you search`.
+  - `buttonside`: side of the search button relative to the field, either `left`
+    or `right`. Default is `left`.
+
+## Updates
+
+Some update may need a full reindexing. This is not automatic to preserve server ressources.
+Check CHANGELOG.md to see if needed.
+
+## Configuration
+
+Configuration is done under the `fulltextsearch` section of the
+`wakka.config.php` file.
+
+```php
+'fulltextsearch' => [
+    'import_batch_size' => 100, // Number of entries to index at once
+    'entries_pdf_indexing' => true, // set to false to disable PDF indexing for entries
+    'engine_config' => [
+        'driver' => 'loupe', // Search engine to use (loupe or typesense)
+        'typesense_config' => [
+            // Configuration for the typesense engine.
+            // Not needed if you use another engine
+            'api_key' => 'xyz',
+            'host' => 'typesense',
+            'port' =>  8108,
+            'protocol' =>  'http',
+        ],
+     ],
+     /*
+     * The following section is used to configure the rendering of the search results.
+     * Warning : We try to make our best to render according to the
+     * configuration, but the search engine can have defauts lower than
+     * the provided values.
+     */
+     'rendering' => [
+         // Length of the crop. Default is 50 characters.
+         'length_crop' => 50,
+         // Max length of the result excerpt. Default is 200 characters.
+         'length_excerpt_max' => 200,
+     ]
+]
+```
+
+## Drivers
+
+### Loupe
+
+Loupe (<https://github.com/loupe-php/loupe>) is the default search engine used
+by this extension. It is based on sqlite so you need the sqlite3 extension to be
+installed on your server. This is the case for almost all shared hosting
+providers.
+
+### Typesense
+
+Typesense is a fast open source search engine. You need to install it on your
+server or use <https://cloud.typesense.org/> and configure the
+`typesense_config` section of the configuration file.
+
+## Performance issue
+
+This extension may use a lot of resource server side, especially when indexing
+attachments and with loupe search engine. In case of error, try increasing the
+memory limit of your PHP configuration. You can also decrease the
+`import_batch_size` parameter in the configuration file to reduce the number of
+entries indexed at once. If you have more than a few thousand pages, you should
+consider using another driver than the default one (loupe) for the index.
