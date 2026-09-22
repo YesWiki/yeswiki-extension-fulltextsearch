@@ -1,24 +1,26 @@
 {
-  "require": {
-    "php": ">=8.4",
-    "cmsig/seal": "^0.12",
-    "cmsig/seal-loupe-adapter": "^0.12",
-    "doctrine/lexer": "^2.0",
-    "smalot/pdfparser": "^2.12",
-    "cmsig/seal-typesense-adapter": "^0.12",
-    "loupe/matcher": "^0.2"
-  },
-  "autoload": {
-    "psr-4": {
-      "\\YesWiki\\FullTextSearch\\Services\\": "services",
-      "\\YesWiki\\FullTextSearch\\DTO\\": "dto",
-      "\\YesWiki\\FullTextSearch\\Enum\\": "enum",
-      "\\YesWiki\\FullTextSearch\\Exception\\": "exception"
+    "name": "yeswiki/extension-fulltextsearch",
+    "type": "yeswiki-extension",
+    "require": {
+        "php": ">=8.4",
+        "cmsig/seal": "^0.12",
+        "cmsig/seal-loupe-adapter": "^0.12",
+        "doctrine/lexer": "^2.0",
+        "smalot/pdfparser": "^2.12",
+        "cmsig/seal-typesense-adapter": "^0.12",
+        "loupe/matcher": "^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\YesWiki\\FullTextSearch\\Services\\": "services",
+            "\\YesWiki\\FullTextSearch\\DTO\\": "dto",
+            "\\YesWiki\\FullTextSearch\\Enum\\": "enum",
+            "\\YesWiki\\FullTextSearch\\Exception\\": "exception"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     }
-  },
-  "config": {
-    "allow-plugins": {
-      "php-http/discovery": false
-    }
-  }
 }
