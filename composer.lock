@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89edde21fd1a520656bd7545fc5b5334",
+    "content-hash": "c18969391efe4d287c9838d46043deb0",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -597,26 +597,26 @@
         },
         {
             "name": "loupe/loupe",
-            "version": "0.13.23",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/loupe-php/loupe.git",
-                "reference": "e925e4c3b457aba9405b8647aa50e8a486460f2a"
+                "reference": "55e9bcedbde5212bf07405d22ab492e24a1b309d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/loupe-php/loupe/zipball/e925e4c3b457aba9405b8647aa50e8a486460f2a",
-                "reference": "e925e4c3b457aba9405b8647aa50e8a486460f2a",
+                "url": "https://api.github.com/repos/loupe-php/loupe/zipball/55e9bcedbde5212bf07405d22ab492e24a1b309d",
+                "reference": "55e9bcedbde5212bf07405d22ab492e24a1b309d",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^3.10.2 || ^4.0",
                 "doctrine/lexer": "^2.0 || ^3.0",
-                "ext-intl": "*",
                 "ext-mbstring": "*",
+                "ext-pdo": "*",
                 "ext-pdo_sqlite": "*",
                 "lib-pdo_sqlite-sqlite": ">= 3.35.0",
-                "loupe/matcher": "^0.2.3",
+                "loupe/matcher": "^0.4",
                 "mjaschen/phpgeo": "^5.0 || ^6.0",
                 "nitotm/efficient-language-detector": "^3.1",
                 "php": "^8.1",
@@ -628,10 +628,9 @@
             "require-dev": {
                 "phpbench/phpbench": "^1.2",
                 "phpunit/phpunit": "^10.5.58",
-                "symfony/filesystem": "^7.3.2",
-                "symfony/finder": "^7.3.5",
-                "symfony/process": "^7.3.4",
-                "symfony/var-dumper": "^7.3.5",
+                "symfony/console": "^7.4",
+                "symfony/filesystem": "^7.4",
+                "symfony/process": "^7.4",
                 "terminal42/code-quality-tools": "dev-main"
             },
             "type": "library",
@@ -653,7 +652,7 @@
             "description": "A full text search engine with tokenization, stemming, typo tolerance, filters and geo support based on only PHP and SQLite",
             "support": {
                 "issues": "https://github.com/loupe-php/loupe/issues",
-                "source": "https://github.com/loupe-php/loupe/tree/0.13.23"
+                "source": "https://github.com/loupe-php/loupe/tree/1.1.0"
             },
             "funding": [
                 {
@@ -661,32 +660,36 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-19T15:45:12+00:00"
+            "time": "2026-09-01T07:53:45+00:00"
         },
         {
             "name": "loupe/matcher",
-            "version": "0.2.4",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/loupe-php/matcher.git",
-                "reference": "7ee82fcd3f952d00126f4ac8e906e08b8e10d596"
+                "reference": "a91100806ff3e4386c20dc4f1440e54236111ef5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/loupe-php/matcher/zipball/7ee82fcd3f952d00126f4ac8e906e08b8e10d596",
-                "reference": "7ee82fcd3f952d00126f4ac8e906e08b8e10d596",
+                "url": "https://api.github.com/repos/loupe-php/matcher/zipball/a91100806ff3e4386c20dc4f1440e54236111ef5",
+                "reference": "a91100806ff3e4386c20dc4f1440e54236111ef5",
                 "shasum": ""
             },
             "require": {
                 "ext-intl": "*",
                 "ext-mbstring": "*",
-                "php": "^8.1"
+                "php": "^8.1",
+                "toflar/fast-set": "^1.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^10.5",
-                "symfony/finder": "^6.2",
-                "symplify/easy-coding-standard": "^12.5"
+                "ext-zlib": "*",
+                "phpbench/phpbench": "^1.2",
+                "phpunit/phpunit": "^10.5 || ^11.5.46",
+                "symfony/console": "^6.4 || ^7.4 || ^8.0",
+                "symfony/filesystem": "^6.4 || ^7.4 || ^8.0",
+                "symfony/http-client": "^6.4 || ^7.4 || ^8.0",
+                "terminal42/code-quality-tools": "dev-main"
             },
             "type": "library",
             "autoload": {
@@ -708,10 +711,20 @@
                     "email": "daun@daun.ltd"
                 }
             ],
-            "description": "Highlight and crop around search terms",
+            "description": "Tokenize, decompose, highlight and crop around text and search terms",
+            "keywords": [
+                "crop",
+                "decompose",
+                "decomposition",
+                "dictionary",
+                "highlight",
+                "search",
+                "tokenize",
+                "tokenizer"
+            ],
             "support": {
                 "issues": "https://github.com/loupe-php/matcher/issues",
-                "source": "https://github.com/loupe-php/matcher/tree/0.2.4"
+                "source": "https://github.com/loupe-php/matcher/tree/0.4.0"
             },
             "funding": [
                 {
@@ -719,7 +732,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-05-07T15:14:56+00:00"
+            "time": "2026-08-31T15:06:35+00:00"
         },
         {
             "name": "mjaschen/phpgeo",
@@ -2320,6 +2333,59 @@
                 }
             ],
             "time": "2026-07-27T15:39:01+00:00"
+        },
+        {
+            "name": "toflar/fast-set",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Toflar/FastSet.git",
+                "reference": "e869a114f277ada274f9a8971eb05020e5ee94d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Toflar/FastSet/zipball/e869a114f277ada274f9a8971eb05020e5ee94d8",
+                "reference": "e869a114f277ada274f9a8971eb05020e5ee94d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^10.5 || ^11.0 || ^12.5",
+                "terminal42/contao-build-tools": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Toflar\\FastSet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yanick Witschi",
+                    "email": "yanick.witschi@terminal42.ch"
+                }
+            ],
+            "description": "Provides the means to create memory-efficient precompiled sets with very fast fingerprint lookups",
+            "keywords": [
+                "Fingerprint",
+                "binary",
+                "dictionary",
+                "hash",
+                "lookup",
+                "memory",
+                "set"
+            ],
+            "support": {
+                "issues": "https://github.com/Toflar/FastSet/issues",
+                "source": "https://github.com/Toflar/FastSet/tree/1.0.1"
+            },
+            "time": "2026-06-02T13:14:21+00:00"
         },
         {
             "name": "toflar/state-set-index",
