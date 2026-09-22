@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "postinstall": "yarn build",
-    "build": "mkdir -p javascripts/vendor && cp node_modules/htmx.org/dist/htmx.min.js javascripts/vendor/htmx.min.js && cp node_modules/idiomorph/dist/idiomorph.min.js javascripts/vendor/idiomorph.min.js && cp node_modules/idiomorph/dist/idiomorph-ext.min.js javascripts/vendor/idiomorph-ext.min.js"
+    "build": "./includes/extract-files-from-node-modules.sh"
   },
   "dependencies": {
     "htmx.org": "^2.0.5",
