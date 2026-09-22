@@ -4,6 +4,7 @@
     "require": {
         "php": ">=8.4",
         "cmsig/seal": "^0.12",
+        "doctrine/lexer": "^2.0",
         "cmsig/seal-loupe-adapter": "^0.12",
         "smalot/pdfparser": "^2.12",
         "cmsig/seal-typesense-adapter": "^0.12",

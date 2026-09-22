@@ -65,6 +65,20 @@ Dans la section `fulltextsearch` de `wakka.config.php`.
 ]
 ```
 
+## Pourquoi `doctrine/lexer` est bridé en `^2.0`
+
+Cette contrainte n'est pas là par hasard et ne doit pas être élargie. Le cœur de
+YesWiki charge ses routes avec `doctrine/annotations`, dont le `DocParser` accède aux
+jetons comme à des tableaux. `Doctrine\Common\Lexer\Token` implémente `ArrayAccess`
+en 2.x, plus en 3.x.
+
+YesWiki charge l'autoloader de chaque extension. Si celui de `fulltextsearch` apporte
+`doctrine/lexer` 3.x, c'est cette classe qui l'emporte, et le cœur tombe au démarrage
+sur `Cannot use object of type Doctrine\Common\Lexer\Token as array` : le wiki entier
+ne répond plus, pas seulement la recherche.
+
+`loupe/loupe` accepte `^2.0 || ^3.0`, donc brider en `^2.0` ne coûte rien ici.
+
 ## Moteurs
 
 ### Loupe

@@ -75,6 +75,20 @@ Configuration is done under the `fulltextsearch` section of the
 ]
 ```
 
+## Why `doctrine/lexer` is pinned to `^2.0`
+
+That constraint is deliberate and must not be widened. The YesWiki core loads its
+routes through `doctrine/annotations`, whose `DocParser` reads tokens as arrays.
+`Doctrine\Common\Lexer\Token` implements `ArrayAccess` in 2.x, and no longer does in
+3.x.
+
+YesWiki loads every extension's autoloader. If the one from `fulltextsearch` brings
+`doctrine/lexer` 3.x, that class wins, and the core dies at boot on `Cannot use object
+of type Doctrine\Common\Lexer\Token as array`: the whole wiki stops answering, not
+just the search.
+
+`loupe/loupe` accepts `^2.0 || ^3.0`, so pinning to `^2.0` costs nothing here.
+
 ## Drivers
 
 ### Loupe
