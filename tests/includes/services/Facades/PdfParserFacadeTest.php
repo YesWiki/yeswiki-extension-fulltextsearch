@@ -4,7 +4,7 @@ namespace YesWiki\Test\FullTextSearch\Services\Facades;
 
 require_once 'tools/fulltextsearch/vendor/autoload.php';
 
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Smalot\PdfParser\Parser;
 use YesWiki\FullTextSearch\Services\Facades\PdfParserFacade;
@@ -12,11 +12,11 @@ use YesWiki\FullTextSearch\Services\Facades\PdfParserFacade;
 class PdfParserFacadeTest extends TestCase
 {
     private readonly PdfParserFacade $pdfParserFacade;
-    private readonly MockObject $parser;
+    private readonly Stub $parser;
 
     public function setUp(): void
     {
-        $this->parser = $this->createMock(Parser::class);
+        $this->parser = $this->createStub(Parser::class);
         $this->pdfParserFacade = new PdfParserFacade($this->parser);
     }
 
@@ -47,9 +47,9 @@ class PdfParserFacadeTest extends TestCase
         $this->assertSame('?', $result);
     }
 
-    private function mockPdfDocument(string $text): MockObject
+    private function mockPdfDocument(string $text): Stub
     {
-        $mock = $this->createMock(\Smalot\PdfParser\Document::class);
+        $mock = $this->createStub(\Smalot\PdfParser\Document::class);
         $mock->method('getText')->willReturn($text);
 
         return $mock;

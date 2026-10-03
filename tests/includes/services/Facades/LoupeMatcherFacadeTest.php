@@ -4,6 +4,7 @@ namespace YesWiki\Test\FullTextSearch\Services\Facades;
 
 require_once 'tools/fulltextsearch/vendor/autoload.php';
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Smalot\PdfParser\Parser;
@@ -22,9 +23,7 @@ class LoupeMatcherFacadeTest extends TestCase
         $this->facade = new LoupeMatcherFacade();
     }
 
-    /**
-     * @dataProvider cropProvider
-     */
+    #[DataProvider('cropProvider')]
     public function testCrop(string $input, string $expected): void
     {
         $res = $this->facade->crop($input, self::TEST_CROP_LENGTH, self::TEST_MAX_LENGTH);
@@ -32,7 +31,7 @@ class LoupeMatcherFacadeTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
-    public function cropProvider(): array
+    public static function cropProvider(): array
     {
         return [
             ['', ''],

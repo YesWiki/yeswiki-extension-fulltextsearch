@@ -13,12 +13,10 @@ use YesWiki\FullTextSearch\Services\SealImporter;
 class SealBatchImporterTest extends TestCase
 {
     private readonly MockObject $pageManager;
-    private readonly MockObject $sealImporter;
 
     public function setUp(): void
     {
         $this->pageManager = $this->createMock(PageRepository::class);
-        $this->sealImporter = $this->createMock(SealImporter::class);
     }
 
     public function testImport()
@@ -35,7 +33,8 @@ class SealBatchImporterTest extends TestCase
             ->with($offset, 123)
             ->willReturn($pages);
 
-        $this->sealImporter
+        $sealImporter = $this->createMock(SealImporter::class);
+        $sealImporter
             ->expects($this->exactly(count($pages)))
             ->method('importPage')
             ->with($this->callback(function ($page) use (&$pages) {
@@ -46,7 +45,7 @@ class SealBatchImporterTest extends TestCase
 
         $sealBatchImporter = new SealBatchImporter(
             $this->pageManager,
-            $this->sealImporter,
+            $sealImporter,
             [
                 'import_batch_size' => 123,
             ]
@@ -68,7 +67,7 @@ class SealBatchImporterTest extends TestCase
 
         $sealBatchImporter = new SealBatchImporter(
             $this->pageManager,
-            $this->sealImporter,
+            $this->createStub(SealImporter::class),
             [
             ]
         );
