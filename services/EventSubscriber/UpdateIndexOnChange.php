@@ -33,7 +33,7 @@ class UpdateIndexOnChange implements EventSubscriberInterface
 
         $this->sealImporter->importPage(
             array_merge(
-            ['id' => $id],
+            ['id' => $id, 'tag' => $id],
             $event->getData()['data'] ?? [],
         )
         );
